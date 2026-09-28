@@ -1,4 +1,0 @@
-requests
-google-genai
-python-dotenv
-notion_client

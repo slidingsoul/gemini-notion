@@ -10,7 +10,8 @@ Summarize a YouTube video with the Gemini API and save the summary as a new page
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.13+
+- [uv](https://docs.astral.sh/uv/)
 - A Google AI (Gemini) API key
 - A Notion integration token
 
@@ -20,14 +21,16 @@ Summarize a YouTube video with the Gemini API and save the summary as a new page
 git clone https://github.com/yourusername/gemini-notion.git
 cd gemini-notion
 
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+uv sync
 ```
 
 ## Configuration
 
-Create a `.env` file in the project root:
+Copy `.env.example` to `.env` and fill in the values:
+
+```bash
+cp .env.example .env
+```
 
 ```env
 GEMINI_API_KEY=your_gemini_api_key
@@ -53,19 +56,19 @@ Optional variables:
 Summarize a YouTube video and save the result to Notion:
 
 ```bash
-python gemini_to_notion.py "https://www.youtube.com/watch?v=VIDEO_ID"
+uv run python gemini_to_notion.py "https://www.youtube.com/watch?v=VIDEO_ID"
 ```
 
 With a custom title:
 
 ```bash
-python gemini_to_notion.py "https://www.youtube.com/watch?v=VIDEO_ID" --title "My note title"
+uv run python gemini_to_notion.py "https://www.youtube.com/watch?v=VIDEO_ID" --title "My note title"
 ```
 
 With a custom prompt template (a txt file):
 
 ```bash
-python gemini_to_notion.py "https://www.youtube.com/watch?v=VIDEO_ID" --prompt prompt.txt
+uv run python gemini_to_notion.py "https://www.youtube.com/watch?v=VIDEO_ID" --prompt prompt.txt
 ```
 
 If no URL is passed, `DEFAULT_EXTERNAL_URL` from `.env` is used.
@@ -80,8 +83,9 @@ If no URL is passed, `DEFAULT_EXTERNAL_URL` from `.env` is used.
 ```
 .
 ├── gemini_to_notion.py   # main script
-├── gemini-notion.sh      # convenience wrapper using .venv
-├── requirements.txt      # Python dependencies
+├── gemini-notion.sh      # convenience wrapper using uv run
+├── pyproject.toml        # project metadata and dependencies
+├── uv.lock               # locked dependency versions
 └── .env                  # environment variables (not committed)
 ```
 
