@@ -42,7 +42,7 @@ Optional variables:
 
 | Variable | Description | Default |
 | --- | --- | --- |
-| `GEMINI_MODEL` | Gemini model to use | `gemini-2.0-flash` |
+| `GEMINI_MODEL` | Gemini model to use | `gemini-3.6-flash` |
 | `DEFAULT_EXTERNAL_URL` | URL used when no argument is passed | none |
 
 ### Getting your keys
